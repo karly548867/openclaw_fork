@@ -24,8 +24,11 @@ jobs:
       working-directory: apps/android
 
     - name: Build with Gradle
-      run: ./gradlew :app:assembleDebug
+      run: ./gradlew :app:assembleDebug --stacktrace
       working-directory: apps/android
+
+    - name: List Build Outputs (Debugging)
+      run: find apps/android/app/build/outputs -maxdepth 10 || echo "Outputs directory not found"
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
